@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+      background-color: #212121;
+      color:white
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showmgmt</title>
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"/>
+</head>
+<body>
+  <style>
+    body {
+      background-color: #212121;
+      color:white
+    }
+
+  </style>
+<body>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><b>ADMIN</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+            <a class="nav-link" href="/venuemgmt">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/login"></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/">LogOut</a>
+            </li>
+            
+        </ul>
+        </div>
+    </nav>
+</div><br><br>
+  <br><br>
+  <form action="/{{venuename}}/showsmgmt" method="post">
+    <label>Show:</label>
+    <input type="text" name="show">
+    <label>rating:</label>
+    <input type="number" name="rating">
+    <label>tags:</label>
+    <input type="text" name="tags">
+    <label>Ticket Price:</label>
+    <input type="number" name="ticket_price">
+    <label>Timing</label>
+    <input type="text" name="timing">
+    <button type="submit" class="btn btn-success">Add Show</button>
+  </form>
+  
+  <br><br>
+  <div id="addvenue">
+    <div class="container">
+      <div class="row">
+        <div class="col md-12">
+          <div class="jumbotron p-3">
+            <h2 style=color:DodgerBlue;> <b>Shows</b></h2>
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col" color="red">Show</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Tags</th>
+                  <th scope="col">Timing</th>
+                  <th scope="col">Price</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                  
+                  {%for one in shows%}
+                  <tr>
+                    <th scope="row">{{one['show_name']}}</th>
+                    <td>{{one['rating']}}</td>
+                    <td>{{one['tags']}}</td>
+                    <td>{{one['timing']}}</td>
+                    <td>{{one['ticket_price']}}</td>
+                    <td><a href="/update/{{one['id']}}/{{venuename}}"><button type="submit" class="btn btn-warning">Edit</button></a></td>
+                    <td><a href="/{{one['show_name']}}/{{one['timing']}}/{{venuename}}/deleteshow"><button type="submit" class="btn btn-danger">Cancel Show</button></a></td>
+                  </tr>
+                  {% endfor %}
+                  
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>  
+  <script>console.log(venuename)</script>
+        
+    
+    
+  
+  <!-- <div id="amalroy" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Venue</h4>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+            <div class="form-group">
+              <label>Venue name:</label>
+              <input type="text" class="form-control" name="name" required="1">
+
+            </div>
+            <div class="form-group">
+              <label>Place:</label>
+              <input type="text" class="form-control" name="place" required="1">
+              
+            </div>
+            <div class="form-group">
+              <label>Location:</label>
+              <input type="text" class="form-control" name="location" required="1">
+              
+            </div>
+            <div class="form-group">
+              <label>capacity:</label>
+              <input type="number" class="form-control" name="capacity" required="1">
+              
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> -->
+    <div id="amalroy"   class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+      
+
+  <!-- </body> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>   
+  
+</body>
+</html>
